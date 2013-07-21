@@ -6,4 +6,7 @@ git config --global push.default matching
 sudo chmod +x /usr/share/doc/git/contrib/subtree/git-subtree.sh
 sudo ln -s /usr/share/doc/git/contrib/subtree/git-subtree.sh /usr/lib/git-core/git-subtree
 
-sudo apt-get install mono-mcs r-base octave openjdk-7-jdk nodejs clisp gobjc gobjc++ gnustep-devel php5 clojure1.4 build-essential ruby ruby-dev python scala coffeescript erlang
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+
+sudo apt-get install mono-mcs r-base octave default-jdk nodejs clisp gobjc gobjc++ gnustep-devel php5 clojure1.4 build-essential ruby ruby-dev python scala coffeescript erlang groovy lua5.2 lua5.2-doc libboost1.53-all-dev libboost1.53-doc
