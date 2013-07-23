@@ -23,3 +23,13 @@ Section "InputClass"
 
 EndSection
 EOS
+
+cat > /etc/cron.weekly/fstrim << EOS
+#! /bin/sh
+for mount in /; do
+	fstrim $mount
+done
+EOS
+
+# TODO: Add ,discard to /etc/crypttab
+# TODO: change issue_discards = 0 to 1 in /etc/lvm/lvm.conf
