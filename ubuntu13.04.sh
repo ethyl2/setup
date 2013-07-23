@@ -10,3 +10,16 @@ sudo add-apt-repository ppa:chris-lea/node.js
 sudo apt-get update
 
 sudo apt-get install mono-mcs r-base octave default-jdk nodejs clisp gobjc gobjc++ gnustep-devel php5 clojure1.4 build-essential ruby ruby-dev python scala coffeescript erlang groovy lua5.2 lua5.2-doc libboost1.53-all-dev libboost1.53-doc
+
+cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
+Section "InputClass"
+  Identifier "touchpad catchall"
+  Driver "synaptics"
+  MatchIsTouchpad "on"
+  MatchDevicePath "/dev/input/event*"
+
+  Option "FingerLow" "40"
+  Option "FingerHigh" "45"
+
+EndSection
+EOS
