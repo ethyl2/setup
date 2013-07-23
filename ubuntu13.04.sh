@@ -33,3 +33,5 @@ EOS
 
 # TODO: Add ,discard to /etc/crypttab
 # TODO: change issue_discards = 0 to 1 in /etc/lvm/lvm.conf
+
+# TODO: autofs
