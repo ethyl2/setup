@@ -25,7 +25,7 @@ if ! [ -e /etc/apt/sources.list.d/chris-lea-node_js-precise.list ]; then
 	apt-get update
 fi
 
-apt-get -y install mono-mcs r-base octave3.2 default-jdk nodejs clisp gobjc gobjc++ gnustep-devel php5 clojure1.3 build-essential ruby ruby-dev python scala coffeescript erlang groovy lua5.2 lua5.2-doc libboost1.48-all-dev libboost1.48-doc vim freemind shutter nautilus-dropbox gimp inkscape golang
+apt-get -y install mono-mcs r-base octave3.2 default-jdk nodejs clisp gobjc gobjc++ gnustep-devel php5 clojure1.3 build-essential ruby ruby-dev python scala coffeescript erlang groovy lua5.2 lua5.2-doc libboost1.48-all-dev libboost1.48-doc vim-gnome vim-doc freemind shutter nautilus-dropbox gimp inkscape golang
 
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
