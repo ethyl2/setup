@@ -25,7 +25,43 @@ if ! [ -e /etc/apt/sources.list.d/chris-lea-node_js-precise.list ]; then
 	apt-get update
 fi
 
-apt-get -y install mono-mcs r-base octave3.2 default-jdk nodejs clisp gobjc gobjc++ gnustep-devel php5 clojure1.3 build-essential ruby ruby-dev python scala coffeescript erlang groovy lua5.2 lua5.2-doc libboost1.48-all-dev libboost1.48-doc vim-gnome vim-doc freemind shutter nautilus-dropbox gimp inkscape golang ccache
+apt-get -y install \
+	build-essential \
+	ccache
+	clisp \
+	clojure1.3 \
+	coffeescript \
+	default-jdk \
+	dvipng \
+	erlang \
+	freemind \
+	gimp \
+	gnustep-devel \
+	gobjc \
+	gobjc++ \
+	golang \
+	groovy \
+	inkscape \
+	libboost1.48-all-dev \
+	libboost1.48-doc \
+	lua5.2 \
+	lua5.2-doc \
+	mono-mcs \
+	nautilus-dropbox \
+	nodejs \
+	octave3.2 \
+	php5 \
+	python \
+	r-base \
+	ruby \
+	ruby-dev \
+	ruby-rspec \
+	scala \
+	shutter \
+	texlive-latex-base \
+	vim \
+	vim-doc \
+	vim-gnome
 
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS

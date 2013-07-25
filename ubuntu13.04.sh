@@ -9,7 +9,35 @@ sudo ln -s /usr/share/doc/git/contrib/subtree/git-subtree.sh /usr/lib/git-core/g
 sudo add-apt-repository ppa:chris-lea/node.js
 sudo apt-get update
 
-sudo apt-get install mono-mcs r-base octave default-jdk nodejs clisp gobjc gobjc++ gnustep-devel php5 clojure1.4 build-essential ruby ruby-dev python scala coffeescript erlang groovy lua5.2 lua5.2-doc libboost1.53-all-dev libboost1.53-doc vim-gnome vim-doc ccache
+sudo apt-get install \
+	build-essential \
+	ccache \
+	clisp \
+	clojure1.4 \
+	coffeescript \
+	default-jdk \
+	dvipng \
+	erlang \
+	gnustep-devel \
+	gobjc \
+	gobjc++ \
+	groovy \
+	libboost1.53-all-dev \
+	libboost1.53-doc \
+	lua5.2 \
+	lua5.2-doc \
+	mono-mcs \
+	nodejs \
+	octave \
+	php5 \
+	python \
+	r-base \
+	ruby \
+	ruby-dev \
+	scala \
+	texlive-latex-base \
+	vim-doc \
+	vim-gnome
 
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
 Section "InputClass"
