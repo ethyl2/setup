@@ -34,7 +34,8 @@ fi
 if ! [ -e /etc/sudoers.d/$USER ]; then
 	OLD_MODE=`umask`
 	umask 0227
-	echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER
+	echo "Defaults always_set_home" | sudo tee -a /etc/sudoers.d/$USER
+	echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$USER
 	umask $OLD_MODE
 fi
 

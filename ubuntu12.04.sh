@@ -12,7 +12,7 @@ sed -i -e 's/us.archive.ubuntu.com/mirrors.xmission.com/g' /etc/apt/sources.list
 sed -i -e 's/security.ubuntu.com/mirrors.xmission.com/g' /etc/apt/sources.list
 
 apt-get update
-apt-get upgrade
+apt-get -y upgrade
 apt-get -y install git curl
 
 if ! [ -x /usr/lib/git-core/git-subtree ]; then
@@ -22,12 +22,12 @@ fi
 
 if ! [ -e /etc/apt/sources.list.d/chris-lea-node_js-precise.list ]; then
 	add-apt-repository -y ppa:chris-lea/node.js
-	apt-get update
+	apt-get -y update
 fi
 
 apt-get -y install \
 	build-essential \
-	ccache
+	ccache \
 	clisp \
 	clojure1.3 \
 	coffeescript \
@@ -36,6 +36,8 @@ apt-get -y install \
 	erlang \
 	freemind \
 	gimp \
+	git-gui \
+	gitk \
 	gnustep-devel \
 	gobjc \
 	gobjc++ \
@@ -46,6 +48,7 @@ apt-get -y install \
 	libboost1.48-doc \
 	lua5.2 \
 	lua5.2-doc \
+	meld \
 	mono-mcs \
 	nautilus-dropbox \
 	nodejs \
@@ -53,15 +56,29 @@ apt-get -y install \
 	php5 \
 	python \
 	r-base \
-	ruby \
-	ruby-dev \
-	ruby-rspec \
+	ruby1.9.1-full \
 	scala \
 	shutter \
 	texlive-latex-base \
+	ttf-dejavu \
 	vim \
 	vim-doc \
-	vim-gnome
+	vim-gnome \
+	vpnc
+
+if ! [ -x /usr/bin/gem ]; then
+	wget http://production.cf.rubygems.org/rubygems/rubygems-2.0.6.tgz
+	tar xzvf rubygems-2.0.6.tgz
+	pushd rubygems-2.0.6
+	ruby setup.rb
+	popd
+	rm -rf rubygems-2.0.6*
+	gem update --system
+fi
+
+if ! [ -x /usr/local/bin/rspec ]; then
+	gem install rspec
+fi
 
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
