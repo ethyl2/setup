@@ -31,6 +31,10 @@ if ! [ -d ~/dpcode ]; then
 	popd
 fi
 
+if ! [ -d ~/dpcode-python-env ]; then
+	virtualenv ~/dpcode-python-env
+fi
+
 if ! [ -e /etc/sudoers.d/$USER ]; then
 	OLD_MODE=`umask`
 	umask 0227

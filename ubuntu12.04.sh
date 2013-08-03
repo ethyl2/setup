@@ -28,6 +28,7 @@ fi
 apt-get -y install \
 	build-essential \
 	ccache \
+	clang \
 	clisp \
 	clojure1.3 \
 	coffeescript \
@@ -46,6 +47,7 @@ apt-get -y install \
 	inkscape \
 	libboost1.48-all-dev \
 	libboost1.48-doc \
+	libcommons-cli-java \
 	lua5.2 \
 	lua5.2-doc \
 	meld \
@@ -55,6 +57,7 @@ apt-get -y install \
 	octave3.2 \
 	php5 \
 	python \
+	python-virtualenv \
 	r-base \
 	ruby1.9.1-full \
 	scala \
@@ -76,9 +79,20 @@ if ! [ -x /usr/bin/gem ]; then
 	gem update --system
 fi
 
-if ! [ -x /usr/local/bin/rspec ]; then
+if ! [ -x /usr/bin/rspec ]; then
 	gem install rspec
 fi
+
+if ! [ -x /usr/bin/rake ]; then
+	gem install rake
+fi
+
+# TODO: figure out if I can install this in a system dir or if I shouldn't bother
+#if ! nodejs -e 'require("optimist");'; then
+#	npm install optimist
+#fi
+
+
 
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
@@ -127,4 +141,24 @@ if ! [ -e /usr/bin/vmware ]; then
 	else
 		echo "VMware Workstation not installed because the install isn't at the expected path" >&2
 	fi
+fi
+
+if ! [ -e /usr/local/crashplan/bin ]; then
+	if ! [ -e /tmp/CrashPlan-install ]; then
+		curl http://download.crashplan.com/installs/linux/install/CrashPlan/CrashPlan_3.5.3_Linux.tgz | tar -C /tmp -xzvf -
+	fi
+	pushd /tmp/CrashPlan-install
+	echo "fs.inotify.max_user_watches=10485760" >> /etc/sysctl.conf
+	sysctl -p
+	echo '#!/bin/sh' > more
+	chmod +x more
+	#PATH=.:/usr/bin:/bin:/usr/sbin:/sbin ./install.sh
+	bash -c 'PATH=.:/usr/bin:/bin:/usr/sbin:/sbin ./install.sh' << EOS
+
+
+
+yes
+EOS
+	popd
+	rm -rf /tmp/CrashPlan-install
 fi

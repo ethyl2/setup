@@ -55,6 +55,7 @@ apt-get -y install \
 	octave \
 	php5 \
 	python \
+	python-virtualenv \
 	r-base \
 	ruby1.9.1-full \
 	scala \
