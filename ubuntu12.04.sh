@@ -52,6 +52,7 @@ apt-get -y install \
 	lua5.2-doc \
 	meld \
 	mono-mcs \
+	monodevelop \
 	nautilus-dropbox \
 	nodejs \
 	octave3.2 \
