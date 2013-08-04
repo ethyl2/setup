@@ -44,6 +44,7 @@ apt-get -y install \
 	gobjc++ \
 	golang \
 	groovy \
+	htop \
 	inkscape \
 	libboost1.48-all-dev \
 	libboost1.48-doc \
@@ -54,6 +55,7 @@ apt-get -y install \
 	mono-mcs \
 	monodevelop \
 	nautilus-dropbox \
+	nethogs \
 	nodejs \
 	octave3.2 \
 	php5 \
@@ -162,4 +164,8 @@ yes
 EOS
 	popd
 	rm -rf /tmp/CrashPlan-install
+fi
+
+if ! [ -e /usr/local/heroku/bin/heroku ]; then
+	wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 fi
