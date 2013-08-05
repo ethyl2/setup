@@ -26,6 +26,7 @@ if ! [ -e /etc/apt/sources.list.d/chris-lea-node_js-precise.list ]; then
 fi
 
 apt-get -y install \
+	alarm-clock-applet \
 	build-essential \
 	ccache \
 	clang \
@@ -139,10 +140,16 @@ fi
 
 if ! [ -e /usr/bin/vmware ]; then
 	if [ -e /net/hurley/storage/data/pub/software/VMware/VMware-Workstation-Full-9.0.2-1031769.x86_64.txt ]; then
-		yes yes | sudo sh -c 'PAGER=/bin/cat sh /net/hurley/storage/data/pub/software/VMware/VMware-Workstation-Full-9.0.2-1031769.x86_64.txt --console --required'
+		yes yes | sh -c 'PAGER=/bin/cat sh /net/hurley/storage/data/pub/software/VMware/VMware-Workstation-Full-9.0.2-1031769.x86_64.txt --console --required'
 		/usr/lib/vmware/bin/vmware-vmx --new-sn `cat /net/hurley/storage/data/pub/software/VMware/serials/Workstation9.txt`
 	else
 		echo "VMware Workstation not installed because the install isn't at the expected path" >&2
+	fi
+fi
+
+if ! [ -e /usr/lib/vmware-cip/5.1 ]; then
+	if [ -e /net/hurley/storage/data/pub/software/VMware/VMware-ClientIntegrationPlugin-5.1.0.x86_64.bundle ]; then
+		yes yes | sh -c 'PAGER=/bin/cat sh /net/hurley/storage/data/pub/software/VMware/VMware-ClientIntegrationPlugin-5.1.0.x86_64.bundle --console --required'
 	fi
 fi
 
