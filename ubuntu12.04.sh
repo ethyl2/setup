@@ -91,10 +91,15 @@ if ! [ -x /usr/bin/rake ]; then
 	gem install rake
 fi
 
-# TODO: figure out if I can install this in a system dir or if I shouldn't bother
-#if ! nodejs -e 'require("optimist");'; then
-#	npm install optimist
-#fi
+export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
+
+if ! nodejs -e 'require("optimist");'; then
+	npm install -g optimist
+fi
+
+if ! nodejs -e 'require("karma");'; then
+	npm install -g karma
+fi
 
 
 
