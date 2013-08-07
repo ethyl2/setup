@@ -91,6 +91,10 @@ if ! [ -x /usr/bin/rake ]; then
 	gem install rake
 fi
 
+if ! [ -x /usr/bin/pry ]; then
+	gem install pry
+fi
+
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
 
 if ! nodejs -e 'require("optimist");'; then
