@@ -25,6 +25,11 @@ if ! [ -e /etc/apt/sources.list.d/chris-lea-node_js-precise.list ]; then
 	apt-get -y update
 fi
 
+if ! [ -e /etc/apt/sources.list.d/ubuntu-toolchain-r-test-precise.list ]; then
+	add-apt-repository -y ppa:ubuntu-toolchain-r/test
+	apt-get -y update
+fi
+
 apt-get -y install \
 	alarm-clock-applet \
 	build-essential \
@@ -37,6 +42,8 @@ apt-get -y install \
 	dvipng \
 	erlang \
 	freemind \
+	g++-4.8 \
+	gcc-4.8 \
 	gimp \
 	git-gui \
 	gitk \
@@ -50,6 +57,10 @@ apt-get -y install \
 	libboost1.48-all-dev \
 	libboost1.48-doc \
 	libcommons-cli-java \
+	libcurl4-openssl-dev \
+	libprotobuf-dev \
+	libtool \
+	libxml2-dev \
 	lua5.2 \
 	lua5.2-doc \
 	meld \
@@ -57,6 +68,7 @@ apt-get -y install \
 	monodevelop \
 	nautilus-dropbox \
 	nethogs \
+	network-manager-vpnc \
 	nodejs \
 	octave3.2 \
 	php5 \
@@ -67,6 +79,7 @@ apt-get -y install \
 	scala \
 	shutter \
 	texlive-latex-base \
+	tree \
 	ttf-dejavu \
 	vim \
 	vim-doc \
@@ -95,14 +108,22 @@ if ! [ -x /usr/bin/pry ]; then
 	gem install pry
 fi
 
+if ! [ -x /usr/bin/rake-compiler ]; then
+	gem install rake-compiler
+fi
+
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
 
-if ! nodejs -e 'require("optimist");'; then
+if ! nodejs -e 'require("optimist")'; then
 	npm install -g optimist
 fi
 
-if ! nodejs -e 'require("karma");'; then
+if ! nodejs -e 'require("karma")'; then
 	npm install -g karma
+fi
+
+if ! nodejs -e 'require("mocha")'; then
+	npm install -g mocha
 fi
 
 

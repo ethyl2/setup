@@ -4,7 +4,10 @@ set -e
 set -u 
 
 ./user_common.sh
-git config --global user.email "dann@mozy.com"
+
+if [ -z $(git config --global user.email) ]; then
+	git config --global user.email "dann@mozy.com"
+fi
 
 if ! grep push-change ~/.gitconfig; then
 cat >> ~/.gitconfig << EOS
@@ -23,5 +26,18 @@ cat >> ~/.gitconfig << EOS
         if [[ \$3 != \"\" ]]; then r=\"\$r --reviewer=\$3\"; fi; \\
         if [[ \$4 != \"\" ]]; then r=\"\$r --reviewer=\$4\"; fi; \\
         git push --receive-pack=\"gerrit receive-pack \$r\" \$remote HEAD:\$remote_review_ref'" 
+EOS
+fi
+
+if ! grep gerrit ~/.ssh/config; then
+	cat >> ~/.ssh/config << EOS
+Host gerrit.dechocorp.com
+    User dann
+    Port 29418
+
+Host gerrit
+    Hostname gerrit.dechocorp.com
+    User dann
+    Port 29418
 EOS
 fi
