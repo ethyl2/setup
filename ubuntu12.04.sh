@@ -78,6 +78,7 @@ apt-get -y install \
 	ruby1.9.1-full \
 	scala \
 	shutter \
+	ssh \
 	texlive-latex-base \
 	tree \
 	ttf-dejavu \
