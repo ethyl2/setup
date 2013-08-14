@@ -115,19 +115,25 @@ fi
 
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
 
-if ! nodejs -e 'require("optimist")'; then
-	npm install -g optimist
-fi
+install_node_module() {
+	module=$1
+	if ! nodejs -e 'require("'$module'")'; then
+		npm install -g $module
+	fi
+}
+install_node_module "optimist"
+install_node_module "karma"
+install_node_module "mocha"
+install_node_module "should"
 
-if ! nodejs -e 'require("karma")'; then
-	npm install -g karma
-fi
+install_go_package() {
+	package=$1
+	if ! [ -e "/usr/lib/go/src/pkg/$package" ]; then
+		go get "$package"
+	fi
+}
 
-if ! nodejs -e 'require("mocha")'; then
-	npm install -g mocha
-fi
-
-
+install_go_package "github.com/jessevdk/go-flags"
 
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
