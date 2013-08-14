@@ -52,3 +52,6 @@ gconftool --set /apps/gnome-terminal/profiles/Default/background_color '#0000000
 gconftool --set /apps/gnome-terminal/profiles/Default/bold_color '#000000000000' --type string
 gconftool --set /apps/gnome-terminal/profiles/Default/foreground_color '#FFFFFFFFFFFF' --type string
 
+if ! grep ccache ~/.bashrc >/dev/null; then
+	echo "export PATH=/usr/lib/ccache:\$PATH" >> ~/.bashrc
+fi
