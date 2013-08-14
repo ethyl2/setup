@@ -12,7 +12,6 @@ sed -i -e 's/us.archive.ubuntu.com/mirrors.xmission.com/g' /etc/apt/sources.list
 sed -i -e 's/security.ubuntu.com/mirrors.xmission.com/g' /etc/apt/sources.list
 
 apt-get update
-apt-get -y upgrade
 apt-get -y install git curl
 
 if ! [ -x /usr/lib/git-core/git-subtree ]; then
@@ -29,6 +28,8 @@ if ! [ -e /etc/apt/sources.list.d/ubuntu-toolchain-r-test-precise.list ]; then
 	add-apt-repository -y ppa:ubuntu-toolchain-r/test
 	apt-get -y update
 fi
+
+apt-get -y upgrade
 
 apt-get -y install \
 	alarm-clock-applet \
@@ -94,23 +95,24 @@ if ! [ -x /usr/bin/gem ]; then
 	ruby setup.rb
 	popd
 	rm -rf rubygems-2.0.6*
-	gem update --system
 fi
 
+REALLY_GEM_UPDATE_SYSTEM=yes gem update --system
+
 if ! [ -x /usr/bin/rspec ]; then
-	gem install rspec
+	gem install --no-rdoc rspec
 fi
 
 if ! [ -x /usr/bin/rake ]; then
-	gem install rake
+	gem install --no-rdoc rake
 fi
 
 if ! [ -x /usr/bin/pry ]; then
-	gem install pry
+	gem install --no-rdoc --no-ri pry
 fi
 
 if ! [ -x /usr/bin/rake-compiler ]; then
-	gem install rake-compiler
+	gem install --no-rdoc rake-compiler
 fi
 
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
@@ -213,3 +215,4 @@ fi
 if ! [ -e /usr/local/heroku/bin/heroku ]; then
 	wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 fi
+
