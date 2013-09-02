@@ -155,11 +155,12 @@ fi
 
 if ! [ -e /etc/cron.weekly/fstrim ]; then
 cat > /etc/cron.weekly/fstrim << EOS
-#! /bin/sh
+#!/bin/sh
 for mount in /; do
 	fstrim \$mount
 done
 EOS
+chmod 755 /etc/cron.weekly/fstrim
 fi
 
 apt-get -y install autofs
