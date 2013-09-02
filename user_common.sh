@@ -55,3 +55,8 @@ gconftool --set /apps/gnome-terminal/profiles/Default/foreground_color '#FFFFFFF
 if ! grep ccache ~/.bashrc >/dev/null; then
 	echo "export PATH=/usr/lib/ccache:\$PATH" >> ~/.bashrc
 fi
+
+if ! grep StrictHostKeyChecking ~/.ssh/config; then
+	echo 'Host *' >> ~/.ssh/config
+	echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+fi
