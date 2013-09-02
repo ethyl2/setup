@@ -65,6 +65,7 @@ apt-get -y install \
 	lua5.2 \
 	lua5.2-doc \
 	meld \
+	molly-guard \
 	mono-mcs \
 	monodevelop \
 	nautilus-dropbox \
