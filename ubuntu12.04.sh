@@ -87,7 +87,8 @@ apt-get -y install \
 	vim \
 	vim-doc \
 	vim-gnome \
-	vpnc
+	vpnc \
+	xchat
 
 if ! [ -x /usr/bin/gem ]; then
 	wget http://production.cf.rubygems.org/rubygems/rubygems-2.0.6.tgz
