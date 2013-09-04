@@ -221,7 +221,8 @@ fi
 
 # See http://www.reddit.com/r/linux/comments/17sov5/howto_beats_audio_hp_laptop_speakers_on/
 if lspci | grep 'Audio device: Intel Corporation 7 Series/C210 Series Chipset Family High Definition Audio Controller (rev 04)'; then
-	cat > /lib/firmware/hda-jack-retask.fw << EOS
+	if ! [ -e /lib/firmware/hda-jack-retask.fw ]; then
+		cat > /lib/firmware/hda-jack-retask.fw << EOS
 [codec]
 0x111d76e0 0x103c181b 0
 
@@ -237,10 +238,13 @@ if lspci | grep 'Audio device: Intel Corporation 7 Series/C210 Series Chipset Fa
 0x1f 0x40f000f0
 0x20 0x40f000f0
 EOS
+	fi
 
-  cat > /etc/modprobe.d/hda-jack-retask.conf << EOS
+	if ! [ -e /etc/modprobe.d/hda-jack-retask.conf ]; then
+  		cat > /etc/modprobe.d/hda-jack-retask.conf << EOS
 # This file was added by the program 'hda-jack-retask'.
 # If you want to revert the changes made by this program, you can simply erase this file and reboot your computer.
 options snd-hda-intel patch=hda-jack-retask.fw,hda-jack-retask.fw,hda-jack-retask.fw,hda-jack-retask.fw
 EOS
+	fi
 fi
