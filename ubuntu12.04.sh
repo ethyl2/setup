@@ -91,12 +91,12 @@ apt-get -y install \
 	xchat
 
 if ! [ -x /usr/bin/gem ]; then
-	wget http://production.cf.rubygems.org/rubygems/rubygems-2.0.6.tgz
-	tar xzvf rubygems-2.0.6.tgz
-	pushd rubygems-2.0.6
+	wget http://production.cf.rubygems.org/rubygems/rubygems-2.0.7.tgz
+	tar xzvf rubygems-2.0.7.tgz
+	pushd rubygems-2.0.7
 	ruby setup.rb
 	popd
-	rm -rf rubygems-2.0.6*
+	rm -rf rubygems-2.0.7*
 fi
 
 REALLY_GEM_UPDATE_SYSTEM=yes gem update --system
