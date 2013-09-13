@@ -35,6 +35,9 @@ if ! [ -d ~/dpcode-python-env ]; then
 	virtualenv ~/dpcode-python-env
 fi
 
+pip install -E ~/dpcode-python-env -r ~/dpcode/pip-pkgs
+
+
 if ! [ -e /etc/sudoers.d/$USER ]; then
 	OLD_MODE=`umask`
 	umask 0227
