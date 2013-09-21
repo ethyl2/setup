@@ -139,6 +139,15 @@ install_go_package() {
 
 install_go_package "github.com/jessevdk/go-flags"
 
+install_R_package() {
+	package=$1
+	if ! [ -e "/usr/local/lib/R/site-library/$package" ]; then
+		R -e "install.packages(\"$package\", repos=\"http://R-Forge.R-project.org\")"
+	fi
+}
+
+install_R_package svUnit
+
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
 Section "InputClass"
