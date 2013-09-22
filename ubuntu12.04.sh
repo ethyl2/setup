@@ -29,6 +29,11 @@ if ! [ -e /etc/apt/sources.list.d/ubuntu-toolchain-r-test-precise.list ]; then
 	apt-get -y update
 fi
 
+if ! [ -e /etc/apt/sources.list.d/cwchien-gradle-precise.list ]; then
+	add-apt-repository -y ppa:cwchien/gradle
+	apt-get -y update
+fi
+
 apt-get -y upgrade
 
 apt-get -y install \
@@ -52,7 +57,7 @@ apt-get -y install \
 	gobjc \
 	gobjc++ \
 	golang \
-	gradle \
+	gradle-ppa \
 	groovy \
 	htop \
 	inkscape \
