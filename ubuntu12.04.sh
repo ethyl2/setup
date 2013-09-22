@@ -52,6 +52,7 @@ apt-get -y install \
 	gobjc \
 	gobjc++ \
 	golang \
+	gradle \
 	groovy \
 	htop \
 	inkscape \
