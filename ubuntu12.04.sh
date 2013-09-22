@@ -67,12 +67,14 @@ apt-get -y install \
 	lua5.2-doc \
 	meld \
 	molly-guard \
+	mono-gmcs \
 	mono-mcs \
 	monodevelop \
 	nautilus-dropbox \
 	nethogs \
 	network-manager-vpnc \
 	nodejs \
+	nunit-console \
 	octave3.2 \
 	php5 \
 	python \
