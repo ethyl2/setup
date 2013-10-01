@@ -109,21 +109,16 @@ fi
 
 REALLY_GEM_UPDATE_SYSTEM=yes gem update --system
 
-if ! [ -x /usr/bin/rspec ]; then
-	gem install --no-rdoc rspec
-fi
+install_gem() {
+	gem=$1
+	if ! gem list -i "$gem"; then
+		gem install --no-ri --no-rdoc "$gem"
+	fi
+}
 
-if ! [ -x /usr/bin/rake ]; then
-	gem install --no-rdoc rake
-fi
-
-if ! [ -x /usr/bin/pry ]; then
-	gem install --no-rdoc --no-ri pry
-fi
-
-if ! [ -x /usr/bin/rake-compiler ]; then
-	gem install --no-rdoc rake-compiler
-fi
+# only install packages which I want to be globally available as command-line tools
+install_gem pry
+install_gem bundler
 
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
 
@@ -133,10 +128,10 @@ install_node_module() {
 		npm install -g $module
 	fi
 }
-install_node_module "optimist"
+
+# only install packages which I want to be globally available as command-line tools
 install_node_module "karma"
 install_node_module "mocha"
-install_node_module "should"
 
 install_go_package() {
 	package=$1
@@ -145,6 +140,7 @@ install_go_package() {
 	fi
 }
 
+# TODO: figure out how to not install this globally and only for the project that uses it.
 install_go_package "github.com/jessevdk/go-flags"
 
 install_R_package() {
@@ -154,6 +150,7 @@ install_R_package() {
 	fi
 }
 
+# TODO: figure out how to not install this globally and only for the project that uses it.
 install_R_package svUnit
 
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
