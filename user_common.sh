@@ -31,13 +31,6 @@ if ! [ -d ~/dpcode ]; then
 	popd
 fi
 
-if ! [ -d ~/dpcode-python-env ]; then
-	virtualenv ~/dpcode-python-env
-fi
-
-pip install -E ~/dpcode-python-env -r ~/dpcode/pip-pkgs
-
-
 if ! [ -e /etc/sudoers.d/$USER ]; then
 	OLD_MODE=`umask`
 	umask 0227
@@ -62,4 +55,15 @@ fi
 if ! grep StrictHostKeyChecking ~/.ssh/config; then
 	echo 'Host *' >> ~/.ssh/config
 	echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+fi
+
+if ! [ -e ~/.gvm ]; then
+	bash < <(curl -s https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer)
+	gvm install go1
+	gvm install go1.1.2
+	gvm use go1
+fi
+
+if ! [ -e ~/.rvm ]; then
+	curl -L https://get.rvm.io | bash -s stable --ruby=2.0
 fi

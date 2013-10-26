@@ -38,17 +38,20 @@ apt-get -y upgrade
 
 apt-get -y install \
 	alarm-clock-applet \
+	bison \
 	build-essential \
 	ccache \
 	clang \
 	clisp \
 	clojure1.3 \
+	cmake \
 	coffeescript \
 	default-jdk \
 	dvipng \
 	erlang \
 	freemind \
 	g++-4.8 \
+	gawk \
 	gcc-4.8 \
 	gimp \
 	git-gui \
@@ -56,7 +59,6 @@ apt-get -y install \
 	gnustep-devel \
 	gobjc \
 	gobjc++ \
-	golang \
 	gradle-ppa \
 	groovy \
 	htop \
@@ -65,16 +67,20 @@ apt-get -y install \
 	libboost1.48-doc \
 	libcommons-cli-java \
 	libcurl4-openssl-dev \
+	libgdbm-dev \
 	libprotobuf-dev \
+	libsqlite3-dev \
 	libtool \
 	libxml2-dev \
+	libyaml-dev \
 	lua5.2 \
 	lua5.2-doc \
 	meld \
+	mercurial \
 	molly-guard \
+	monodevelop \
 	mono-gmcs \
 	mono-mcs \
-	monodevelop \
 	nautilus-dropbox \
 	nethogs \
 	network-manager-vpnc \
@@ -85,7 +91,6 @@ apt-get -y install \
 	python \
 	python-virtualenv \
 	r-base \
-	ruby1.9.1-full \
 	scala \
 	shutter \
 	ssh \
@@ -98,50 +103,6 @@ apt-get -y install \
 	vpnc \
 	xchat
 
-if ! [ -x /usr/bin/gem ]; then
-	wget http://production.cf.rubygems.org/rubygems/rubygems-2.0.7.tgz
-	tar xzvf rubygems-2.0.7.tgz
-	pushd rubygems-2.0.7
-	ruby setup.rb
-	popd
-	rm -rf rubygems-2.0.7*
-fi
-
-REALLY_GEM_UPDATE_SYSTEM=yes gem update --system
-
-install_gem() {
-	gem=$1
-	if ! gem list -i "$gem"; then
-		gem install --no-ri --no-rdoc "$gem"
-	fi
-}
-
-# only install packages which I want to be globally available as command-line tools
-install_gem pry
-install_gem bundler
-
-export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
-
-install_node_module() {
-	module=$1
-	if ! nodejs -e 'require("'$module'")'; then
-		npm install -g $module
-	fi
-}
-
-# only install packages which I want to be globally available as command-line tools
-install_node_module "karma"
-install_node_module "mocha"
-
-install_go_package() {
-	package=$1
-	if ! [ -e "/usr/lib/go/src/pkg/$package" ]; then
-		go get "$package"
-	fi
-}
-
-# TODO: figure out how to not install this globally and only for the project that uses it.
-install_go_package "github.com/jessevdk/go-flags"
 
 install_R_package() {
 	package=$1
