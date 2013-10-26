@@ -59,6 +59,7 @@ fi
 
 if ! [ -e ~/.gvm ]; then
 	bash < <(curl -s https://raw.github.com/moovweb/gvm/master/binscripts/gvm-installer)
+	source $HOME/.gvm/scripts/gvm
 	gvm install go1
 	gvm install go1.1.2
 	gvm use go1
@@ -66,4 +67,5 @@ fi
 
 if ! [ -e ~/.rvm ]; then
 	curl -L https://get.rvm.io | bash -s stable --ruby=2.0
+	source $HOME/.rvm/scripts/rvm
 fi

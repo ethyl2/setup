@@ -15,7 +15,7 @@ apt-get update
 apt-get -y install git curl
 
 if ! [ -x /usr/lib/git-core/git-subtree ]; then
-	curl https://raw.github.com/git/git/master/contrib/subtree/git-subtree.sh > /usr/lib/git-core/git-subtree
+	curl --location https://raw.github.com/git/git/master/contrib/subtree/git-subtree.sh > /usr/lib/git-core/git-subtree
 	chmod +x /usr/lib/git-core/git-subtree
 fi
 
@@ -103,6 +103,12 @@ apt-get -y install \
 	vpnc \
 	xchat
 
+if lspci | grep -q VMware; then
+	apt-get -y install \
+		open-vm-tools \
+		open-vm-toolbox \
+		open-vm-dkms
+fi
 
 install_R_package() {
 	package=$1
@@ -144,14 +150,14 @@ sed -i -e 's/^#\/net	-hosts$/\/net	-hosts/' /etc/auto.master
 restart autofs
 
 if ! dpkg -l google-chrome-stable | grep '^ii.*google-chrome-stable'; then
-	curl -o /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	curl --location -o /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	dpkg -i /tmp/google-chrome-stable_current_amd64.deb || true
 	apt-get -fy install
 fi
 
 if ! dpkg -l anki | grep '^ii.*anki'; then
-	curl -o /tmp/anki-2.0.12.deb https://anki.googlecode.com/files/anki-2.0.12.deb
-	dpkg -i /tmp/anki-2.0.12.deb || true
+	curl --location -o /tmp/anki-2.0.15.deb http://ankisrs.net/download/mirror/anki-2.0.15.deb
+	dpkg -i /tmp/anki-2.0.15.deb || true
 	apt-get -fy install
 fi
 
@@ -172,7 +178,7 @@ fi
 
 if ! [ -e /usr/local/crashplan/bin ]; then
 	if ! [ -e /tmp/CrashPlan-install ]; then
-		curl http://download.crashplan.com/installs/linux/install/CrashPlan/CrashPlan_3.5.3_Linux.tgz | tar -C /tmp -xzvf -
+		curl --location http://download.crashplan.com/installs/linux/install/CrashPlan/CrashPlan_3.5.3_Linux.tgz | tar -C /tmp -xzvf -
 	fi
 	pushd /tmp/CrashPlan-install
 	echo "fs.inotify.max_user_watches=10485760" >> /etc/sysctl.conf
