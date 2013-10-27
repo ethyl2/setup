@@ -34,12 +34,19 @@ if ! [ -e /etc/apt/sources.list.d/cwchien-gradle-precise.list ]; then
 	apt-get -y update
 fi
 
+if ! [ -e /etc/apt/sources.list.d/recoll-backports-recoll-1_15-on-precise.list ]; then
+	add-apt-repository -y ppa:recoll-backports/recoll-1.15-on
+	apt-get -y update
+fi
+
 apt-get -y upgrade
 
 apt-get -y install \
 	alarm-clock-applet \
+	antiword \
 	bison \
 	build-essential \
+	catdoc \
 	ccache \
 	clang \
 	clisp \
@@ -47,6 +54,7 @@ apt-get -y install \
 	cmake \
 	coffeescript \
 	default-jdk \
+	djvulibre-bin \
 	dvipng \
 	erlang \
 	freemind \
@@ -68,6 +76,7 @@ apt-get -y install \
 	libcommons-cli-java \
 	libcurl4-openssl-dev \
 	libgdbm-dev \
+	libimage-exiftool-perl \
 	libprotobuf-dev \
 	libsqlite3-dev \
 	libtool \
@@ -88,15 +97,22 @@ apt-get -y install \
 	nunit-console \
 	octave3.2 \
 	php5 \
+	pstotext \
 	python \
+	python-chm \
+	python-mutagen \
 	python-virtualenv \
 	r-base \
+	recoll \
+	recoll-lens \
 	scala \
 	shutter \
 	ssh \
 	texlive-latex-base \
 	tree \
 	ttf-dejavu \
+	unrtf \
+	untex \
 	vim \
 	vim-doc \
 	vim-gnome \
@@ -159,6 +175,11 @@ if ! dpkg -l anki | grep '^ii.*anki'; then
 	curl --location -o /tmp/anki-2.0.15.deb http://ankisrs.net/download/mirror/anki-2.0.15.deb
 	dpkg -i /tmp/anki-2.0.15.deb || true
 	apt-get -fy install
+fi
+
+# Install python epub module for recoll indexing of epub files
+if ! [ -e /usr/local/lib/python2.7/dist-packages/epub ]; then
+	pip install epub
 fi
 
 if ! [ -e /usr/bin/vmware ]; then
