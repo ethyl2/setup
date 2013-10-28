@@ -70,6 +70,7 @@ apt-get -y install \
 	gradle-ppa \
 	groovy \
 	htop \
+	iotop \
 	inkscape \
 	libboost1.48-all-dev \
 	libboost1.48-doc \
@@ -80,10 +81,12 @@ apt-get -y install \
 	libprotobuf-dev \
 	libsqlite3-dev \
 	libtool \
+	libwpd-tools \
 	libxml2-dev \
 	libyaml-dev \
 	lua5.2 \
 	lua5.2-doc \
+	lyx \
 	meld \
 	mercurial \
 	molly-guard \
@@ -99,6 +102,7 @@ apt-get -y install \
 	php5 \
 	pstotext \
 	python \
+	python-chardet \
 	python-chm \
 	python-mutagen \
 	python-virtualenv \
@@ -111,12 +115,14 @@ apt-get -y install \
 	texlive-latex-base \
 	tree \
 	ttf-dejavu \
+	unrar \
 	unrtf \
 	untex \
 	vim \
 	vim-doc \
 	vim-gnome \
 	vpnc \
+	wv \
 	xchat
 
 if lspci | grep -q VMware; then
@@ -180,6 +186,11 @@ fi
 # Install python epub module for recoll indexing of epub files
 if ! [ -e /usr/local/lib/python2.7/dist-packages/epub ]; then
 	pip install epub
+fi
+
+# Install python rarfile module for recoll indexing of rar files
+if ! [ -e /usr/local/lib/python2.7/dist-packages/rarfile.py ]; then
+	pip install rarfile
 fi
 
 if ! [ -e /usr/bin/vmware ]; then
