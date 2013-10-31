@@ -96,6 +96,7 @@ apt-get -y install \
 	nautilus-dropbox \
 	nethogs \
 	network-manager-vpnc \
+	nmap \
 	nodejs \
 	nunit-console \
 	octave3.2 \
