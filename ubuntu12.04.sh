@@ -116,6 +116,7 @@ apt-get -y install \
 	texlive-latex-base \
 	tree \
 	ttf-dejavu \
+	unattended-upgrades \
 	unrar \
 	unrtf \
 	untex \
