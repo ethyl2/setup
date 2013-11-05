@@ -180,8 +180,8 @@ if ! dpkg -l google-chrome-stable | grep '^ii.*google-chrome-stable'; then
 fi
 
 if ! dpkg -l anki | grep '^ii.*anki'; then
-	curl --location -o /tmp/anki-2.0.15.deb http://ankisrs.net/download/mirror/anki-2.0.15.deb
-	dpkg -i /tmp/anki-2.0.15.deb || true
+	curl --location -o /tmp/anki.deb http://ankisrs.net/download/mirror/anki-2.0.16.deb
+	dpkg -i /tmp/anki.deb || true
 	apt-get -fy install
 fi
 
