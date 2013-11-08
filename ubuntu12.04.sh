@@ -105,6 +105,7 @@ apt-get -y install \
 	python \
 	python-chardet \
 	python-chm \
+	python-easygui \
 	python-mutagen \
 	python-virtualenv \
 	r-base \
