@@ -80,7 +80,7 @@ fi
 
 install_R_package() {
 	package=$1
-	if ! [ -e "$HOME/.Rlibs/*/$package" ]; then
+	if ! [ -e "$HOME/.Rlibs/$package" ]; then
 		R -e "install.packages(\"$package\", dependencies = TRUE, repos=\"http://cran.cnr.Berkeley.edu\", lib=\"~/.Rlibs\")"
 	fi
 }
@@ -92,4 +92,5 @@ install_R_package maps
 install_R_package devtools
 install_R_package roxygen2
 install_R_package testthat
+install_R_package iterators
 
