@@ -69,3 +69,27 @@ if ! [ -e ~/.rvm ]; then
 	curl -L https://get.rvm.io | bash -s stable --ruby=2.0
 	source $HOME/.rvm/scripts/rvm
 fi
+
+if ! [ -e ~/.Renviron ]; then
+	echo 'R_LIBS_USER="~/.Rlibs"' > ~/.Renviron
+fi
+
+if ! [ -e ~/.Rlibs ]; then
+	mkdir ~/.Rlibs
+fi
+
+install_R_package() {
+	package=$1
+	if ! [ -e "$HOME/.Rlibs/*/$package" ]; then
+		R -e "install.packages(\"$package\", dependencies = TRUE, repos=\"http://cran.cnr.Berkeley.edu\", lib=\"~/.Rlibs\")"
+	fi
+}
+
+# TODO: figure out how to not install this globally and only for the project that uses it.
+install_R_package knitr
+install_R_package Hmisc
+install_R_package maps
+install_R_package devtools
+install_R_package roxygen2
+install_R_package testthat
+

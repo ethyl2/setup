@@ -39,6 +39,11 @@ if ! [ -e /etc/apt/sources.list.d/recoll-backports-recoll-1_15-on-precise.list ]
 	apt-get -y update
 fi
 
+if ! [ -e /etc/apt/sources.list.d/marutter-rrutter-precise.list ]; then
+	add-apt-repository -y ppa:marutter/rrutter
+	apt-get -y update
+fi
+
 apt-get -y upgrade
 
 apt-get -y install \
@@ -109,11 +114,29 @@ apt-get -y install \
 	python-mutagen \
 	python-virtualenv \
 	r-base \
+	r-base-dev \
+	r-cran-boot \
+	r-cran-class \
+	r-cran-cluster \
+	r-cran-codetools \
+	r-cran-foreign \
+	r-cran-kernsmooth \
+	r-cran-lattice \
+	r-cran-mass \
+	r-cran-matrix \
+	r-cran-mgcv \
+	r-cran-nlme \
+	r-cran-nnet \
+	r-cran-rpart \
+	r-cran-spatial \
+	r-cran-survival \
+	r-cran-rodbc \
 	recoll \
 	recoll-lens \
 	scala \
 	shutter \
 	ssh \
+	subversion \
 	texlive-latex-base \
 	tree \
 	ttf-dejavu \
@@ -134,16 +157,6 @@ if lspci | grep -q VMware; then
 		open-vm-toolbox \
 		open-vm-dkms
 fi
-
-install_R_package() {
-	package=$1
-	if ! [ -e "/usr/local/lib/R/site-library/$package" ]; then
-		R -e "install.packages(\"$package\", repos=\"http://R-Forge.R-project.org\")"
-	fi
-}
-
-# TODO: figure out how to not install this globally and only for the project that uses it.
-install_R_package svUnit
 
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
