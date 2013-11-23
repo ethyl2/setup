@@ -61,6 +61,10 @@ apt-get -y install \
 	default-jdk \
 	djvulibre-bin \
 	dvipng \
+	eclipse \
+	eclipse-cdt \
+	eclipse-egit \
+	eclipse-jdt \
 	erlang \
 	freemind \
 	g++-4.8 \
