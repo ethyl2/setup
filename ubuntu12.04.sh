@@ -222,9 +222,9 @@ if ! [ -e /usr/bin/vmware ]; then
 	fi
 fi
 
-if ! [ -e /usr/lib/vmware-cip/5.1 ]; then
-	if [ -e /net/hurley/storage/data/pub/software/VMware/VMware-ClientIntegrationPlugin-5.1.0.x86_64.bundle ]; then
-		yes yes | sh -c 'PAGER=/bin/cat sh /net/hurley/storage/data/pub/software/VMware/VMware-ClientIntegrationPlugin-5.1.0.x86_64.bundle --console --required'
+if ! [ -e /usr/lib/vmware-cip/5.5 ]; then
+	if [ -e /net/hurley/storage/data/pub/software/VMware/VMware-ClientIntegrationPlugin-5.5.0.x86_64.bundle ]; then
+		yes yes | sh -c 'PAGER=/bin/cat sh /net/hurley/storage/data/pub/software/VMware/VMware-ClientIntegrationPlugin-5.5.0.x86_64.bundle --console --required'
 	fi
 fi
 
