@@ -51,6 +51,7 @@ apt-get -y install \
 	antiword \
 	bison \
 	build-essential \
+	bzr \
 	catdoc \
 	ccache \
 	clang \
@@ -92,6 +93,7 @@ apt-get -y install \
 	libtool \
 	libwpd-tools \
 	libxml2-dev \
+	libxslt1-dev \
 	libyaml-dev \
 	lua5.2 \
 	lua5.2-doc \
