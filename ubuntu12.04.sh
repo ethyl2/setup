@@ -12,10 +12,10 @@ sed -i -e 's/us.archive.ubuntu.com/mirrors.xmission.com/g' /etc/apt/sources.list
 sed -i -e 's/security.ubuntu.com/mirrors.xmission.com/g' /etc/apt/sources.list
 
 apt-get update
-apt-get -y install git curl
+apt-get -y install git curl wget
 
 if ! [ -x /usr/lib/git-core/git-subtree ]; then
-	curl --location https://raw.github.com/git/git/master/contrib/subtree/git-subtree.sh > /usr/lib/git-core/git-subtree
+	wget -O /usr/lib/git-core/git-subtree https://raw.github.com/git/git/master/contrib/subtree/git-subtree.sh
 	chmod +x /usr/lib/git-core/git-subtree
 fi
 
@@ -41,6 +41,11 @@ fi
 
 if ! [ -e /etc/apt/sources.list.d/marutter-rrutter-precise.list ]; then
 	add-apt-repository -y ppa:marutter/rrutter
+	apt-get -y update
+fi
+
+if ! [ -e /etc/apt/sources.list.d/webupd8team-java-precise.list ]; then
+	add-apt-repository -y ppa:webupd8team/java
 	apt-get -y update
 fi
 
@@ -111,6 +116,9 @@ apt-get -y install \
 	nodejs \
 	nunit-console \
 	octave3.2 \
+	openjdk-6-jdk \
+	openjdk-7-jdk \
+	oracle-java7-installer \
 	php5 \
 	pstotext \
 	python \
@@ -194,15 +202,30 @@ sed -i -e 's/^#\/net	-hosts$/\/net	-hosts/' /etc/auto.master
 restart autofs
 
 if ! dpkg -l google-chrome-stable | grep '^ii.*google-chrome-stable'; then
-	curl --location -o /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	wget -O /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	dpkg -i /tmp/google-chrome-stable_current_amd64.deb || true
 	apt-get -fy install
 fi
 
 if ! dpkg -l anki | grep '^ii.*anki'; then
-	curl --location -o /tmp/anki.deb http://ankisrs.net/download/mirror/anki-2.0.16.deb
+	latest_anki_url=$(wget -q -O- http://ankisrs.net/ | grep -o -P 'https?://.*anki[^/]*deb' | tail -1)
+	wget -O /tmp/anki.deb $(latest_anki_url)
 	dpkg -i /tmp/anki.deb || true
 	apt-get -fy install
+fi
+
+if ! dpkg -l sbt; then
+	latest_sbt_url=$(wget -q -O- http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html | grep -o -P 'https?://repo\.scala-sbt\.org/[^"]*sbt\.deb' | tail -1)
+	wget -O /tmp/sbt.deb "$latest_sbt_url"
+	dpkg -i /tmp/sbt.deb || true
+	apt-get -fy install
+fi
+
+if ! [ -e /usr/local/scala/eclipse ]; then
+	latest_scala_eclipse_url=$(wget -q -O- http://scala-ide.org/download/sdk.html | grep -o -P 'https?://.*typesafe\.com/.*/scala-SDK-.*-linux.gtk.x86_64.tar.gz' | tail -1)
+	wget -O /tmp/scala-sdk.tar.gz "$latest_scala_eclipse_url"
+	mkdir -p /usr/local/scala
+	tar xzvf /tmp/scala-sdk.tar.gz -C /usr/local/scala
 fi
 
 # Install python epub module for recoll indexing of epub files
@@ -232,7 +255,7 @@ fi
 
 if ! [ -e /usr/local/crashplan/bin ]; then
 	if ! [ -e /tmp/CrashPlan-install ]; then
-		curl --location http://download.crashplan.com/installs/linux/install/CrashPlan/CrashPlan_3.5.3_Linux.tgz | tar -C /tmp -xzvf -
+		wget -O- http://download.crashplan.com/installs/linux/install/CrashPlan/CrashPlan_3.5.3_Linux.tgz | tar -C /tmp -xzvf -
 	fi
 	pushd /tmp/CrashPlan-install
 	echo "fs.inotify.max_user_watches=10485760" >> /etc/sysctl.conf
@@ -283,3 +306,6 @@ options snd-hda-intel patch=hda-jack-retask.fw,hda-jack-retask.fw,hda-jack-retas
 EOS
 	fi
 fi
+
+# May want to make this conditional on something, but I'm not sure what. Maybe just leave it out?
+#update-java-alternatives --set java-7-oracle
