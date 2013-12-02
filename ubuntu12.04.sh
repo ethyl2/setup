@@ -49,6 +49,11 @@ if ! [ -e /etc/apt/sources.list.d/webupd8team-java-precise.list ]; then
 	apt-get -y update
 fi
 
+if ! [ -e /etc/apt/sources.list.d/aims-sagemath-precise.list ]; then
+	add-apt-repository -y ppa:aims/sagemath
+	apt-get -y update
+fi
+
 apt-get -y upgrade
 
 apt-get -y install \
@@ -74,6 +79,7 @@ apt-get -y install \
 	gcc-4.8 \
 	gimp \
 	git-gui \
+	git-svn \
 	gitk \
 	gnustep-devel \
 	gobjc \
@@ -143,6 +149,7 @@ apt-get -y install \
 	r-cran-rodbc \
 	recoll \
 	recoll-lens \
+	sagemath-upstream-binary \
 	scala \
 	shutter \
 	ssh \
