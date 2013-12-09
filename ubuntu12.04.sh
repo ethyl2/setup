@@ -168,12 +168,12 @@ apt-get -y install \
 	wv \
 	xchat
 
-if lspci | grep -q VMware; then
-	apt-get -y install \
-		open-vm-tools \
-		open-vm-toolbox \
-		open-vm-dkms
-fi
+#if lspci | grep -q VMware; then
+#	apt-get -y install \
+#		open-vm-tools \
+#		open-vm-toolbox \
+#		open-vm-dkms
+#fi
 
 if ! [ -e /usr/share/X11/xorg.conf.d/60-synaptics-options.conf ]; then
 cat > /usr/share/X11/xorg.conf.d/60-synaptics-options.conf << EOS
