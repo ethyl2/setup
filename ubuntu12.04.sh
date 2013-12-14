@@ -161,6 +161,7 @@ apt-get -y install \
 	unrar \
 	unrtf \
 	untex \
+	valgrind \
 	vim \
 	vim-doc \
 	vim-gnome \
