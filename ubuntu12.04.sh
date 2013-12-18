@@ -54,7 +54,7 @@ if ! [ -e /etc/apt/sources.list.d/aims-sagemath-precise.list ]; then
 	apt-get -y update
 fi
 
-apt-get -y upgrade
+apt-get -y dist-upgrade
 
 apt-get -y install \
 	alarm-clock-applet \
@@ -216,7 +216,7 @@ fi
 
 if ! dpkg -l anki | grep '^ii.*anki'; then
 	latest_anki_url=$(wget -q -O- http://ankisrs.net/ | grep -o -P 'https?://.*anki[^/]*deb' | tail -1)
-	wget -O /tmp/anki.deb $(latest_anki_url)
+	wget -O /tmp/anki.deb "$latest_anki_url"
 	dpkg -i /tmp/anki.deb || true
 	apt-get -fy install
 fi
