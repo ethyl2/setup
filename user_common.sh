@@ -67,7 +67,11 @@ fi
 
 if ! [ -e ~/.rvm ]; then
 	curl -L https://get.rvm.io | bash -s stable --ruby=2.0
+	set +e
+	set +u
 	source $HOME/.rvm/scripts/rvm
+	set -e
+	set -u
 fi
 
 if ! [ -e ~/.Renviron ]; then
