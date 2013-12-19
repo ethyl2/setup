@@ -89,12 +89,15 @@ apt-get -y install \
 	htop \
 	iotop \
 	inkscape \
+	libarmadillo-dev \
 	libboost1.48-all-dev \
 	libboost1.48-doc \
 	libcommons-cli-java \
 	libcurl4-openssl-dev \
 	libgdbm-dev \
 	libimage-exiftool-perl \
+	liblapack-dev \
+	libopenblas-dev \
 	libprotobuf-dev \
 	libsqlite3-dev \
 	libtool \
