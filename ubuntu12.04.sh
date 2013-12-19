@@ -59,6 +59,7 @@ apt-get -y upgrade
 apt-get -y install \
 	alarm-clock-applet \
 	antiword \
+	apt-file \
 	bison \
 	build-essential \
 	bzr \
@@ -97,7 +98,6 @@ apt-get -y install \
 	libgdbm-dev \
 	libimage-exiftool-perl \
 	liblapack-dev \
-	libopenblas-dev \
 	libprotobuf-dev \
 	libsqlite3-dev \
 	libtool \
