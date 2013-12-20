@@ -108,6 +108,7 @@ apt-get -y install \
 	lua5.2 \
 	lua5.2-doc \
 	lyx \
+	maven \
 	meld \
 	mercurial \
 	molly-guard \
