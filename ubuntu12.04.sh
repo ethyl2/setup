@@ -57,6 +57,7 @@ fi
 apt-get -y dist-upgrade
 
 apt-get -y install \
+	python-jinja2 \
 	alarm-clock-applet \
 	antiword \
 	apt-file \
@@ -80,16 +81,18 @@ apt-get -y install \
 	gcc-4.8 \
 	gimp \
 	git-gui \
-	git-svn \
 	gitk \
+	git-svn \
 	gnustep-devel \
 	gobjc \
 	gobjc++ \
 	gradle-ppa \
 	groovy \
 	htop \
-	iotop \
 	inkscape \
+	iotop \
+	ipython \
+	ipython-notebook \
 	libarmadillo-dev \
 	libboost1.48-all-dev \
 	libboost1.48-doc \
@@ -131,7 +134,13 @@ apt-get -y install \
 	python-chardet \
 	python-chm \
 	python-easygui \
+	python-matplotlib \
 	python-mutagen \
+	python-nose \
+	python-numpy \
+	python-pandas \
+	python-scipy \
+	python-sympy \
 	python-virtualenv \
 	r-base \
 	r-base-dev \
@@ -147,10 +156,10 @@ apt-get -y install \
 	r-cran-mgcv \
 	r-cran-nlme \
 	r-cran-nnet \
+	r-cran-rodbc \
 	r-cran-rpart \
 	r-cran-spatial \
 	r-cran-survival \
-	r-cran-rodbc \
 	recoll \
 	recoll-lens \
 	sagemath-upstream-binary \
@@ -235,6 +244,12 @@ if ! [ -e /usr/local/scala/eclipse ]; then
 	wget -O /tmp/scala-sdk.tar.gz "$latest_scala_eclipse_url"
 	mkdir -p /usr/local/scala
 	tar xzvf /tmp/scala-sdk.tar.gz -C /usr/local/scala
+fi
+
+if ! dpkg -l google-talkplugin; then
+	wget -O /tmp/google-talkplugin_current_amd64.deb https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb
+	dpkg -i google-talkplugin_current_amd64.deb || true
+	apt-get -fy install
 fi
 
 # Install python epub module for recoll indexing of epub files
