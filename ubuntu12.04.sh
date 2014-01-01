@@ -57,6 +57,8 @@ fi
 apt-get -y dist-upgrade
 
 apt-get -y install \
+	p7zip-full \
+	p7zip-rar \
 	python-jinja2 \
 	alarm-clock-applet \
 	antiword \
