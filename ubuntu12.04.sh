@@ -178,6 +178,7 @@ apt-get -y install \
 	unrtf \
 	untex \
 	valgrind \
+	kcachegrind \
 	vim \
 	vim-doc \
 	vim-gnome \
