@@ -54,6 +54,11 @@ if ! [ -e /etc/apt/sources.list.d/aims-sagemath-precise.list ]; then
 	apt-get -y update
 fi
 
+if ! [ -e /etc/apt/sources.list.d/octave-stable-precise.list ]; then
+	add-apt-repository -y ppa:octave/stable
+	apt-get -y update
+fi
+
 apt-get -y dist-upgrade
 
 apt-get -y install \
@@ -127,7 +132,7 @@ apt-get -y install \
 	nmap \
 	nodejs \
 	nunit-console \
-	octave3.2 \
+	octave \
 	openjdk-6-jdk \
 	openjdk-7-jdk \
 	oracle-java7-installer \
@@ -301,9 +306,9 @@ EOS
 	rm -rf /tmp/CrashPlan-install
 fi
 
-if ! [ -e /usr/local/heroku/bin/heroku ]; then
-	wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-fi
+#if ! [ -e /usr/local/heroku/bin/heroku ]; then
+#	wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+#fi
 
 # See http://www.reddit.com/r/linux/comments/17sov5/howto_beats_audio_hp_laptop_speakers_on/
 if lspci | grep 'Audio device: Intel Corporation 7 Series/C210 Series Chipset Family High Definition Audio Controller (rev 04)'; then
