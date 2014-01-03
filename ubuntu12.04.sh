@@ -57,6 +57,7 @@ fi
 apt-get -y dist-upgrade
 
 apt-get -y install \
+	ifstat \
 	p7zip-full \
 	p7zip-rar \
 	python-jinja2 \
