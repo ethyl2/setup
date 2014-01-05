@@ -54,10 +54,11 @@ if ! [ -e /etc/apt/sources.list.d/aims-sagemath-precise.list ]; then
 	apt-get -y update
 fi
 
-if ! [ -e /etc/apt/sources.list.d/octave-stable-precise.list ]; then
-	add-apt-repository -y ppa:octave/stable
-	apt-get -y update
-fi
+# unfortunately this version of octave crashes with random memory corruption
+#if ! [ -e /etc/apt/sources.list.d/octave-stable-precise.list ]; then
+#	add-apt-repository -y ppa:octave/stable
+#	apt-get -y update
+#fi
 
 apt-get -y dist-upgrade
 
@@ -132,7 +133,11 @@ apt-get -y install \
 	nmap \
 	nodejs \
 	nunit-console \
-	octave \
+	octave3.2 \
+	octave-optim \
+	octave-ga \
+	octave3.2-headers \
+	octave-nnet \
 	openjdk-6-jdk \
 	openjdk-7-jdk \
 	oracle-java7-installer \
