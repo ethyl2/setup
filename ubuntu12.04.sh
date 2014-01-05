@@ -177,6 +177,7 @@ apt-get -y install \
 	recoll-lens \
 	sagemath-upstream-binary \
 	scala \
+	screen \
 	shutter \
 	ssh \
 	subversion \
