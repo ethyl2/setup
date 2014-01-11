@@ -72,6 +72,10 @@ if ! [ -e ~/.rvm ]; then
 	source $HOME/.rvm/scripts/rvm
 	set -e
 	set -u
+	if [ -e ~/.bash_profile ]; then
+		cat ~/.bash_profile >> ~/.bashrc
+		rm ~/.bash_profile
+	fi
 fi
 
 if ! [ -e ~/.Renviron ]; then
