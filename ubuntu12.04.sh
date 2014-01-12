@@ -196,7 +196,13 @@ apt-get -y install \
 	vim-gnome \
 	vpnc \
 	wv \
-	xchat
+	xchat \
+	nvidia-cuda-toolkit \
+	libstdc++6-4.4-dbg \
+	libgcc1-dbg \
+	libgomp1-dbg \
+	libmudflap0-dbg \
+	doxygen
 
 #if lspci | grep -q VMware; then
 #	apt-get -y install \
