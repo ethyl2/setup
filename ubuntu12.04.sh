@@ -154,6 +154,7 @@ apt-get -y install \
 	python-pandas \
 	python-scipy \
 	python-sympy \
+	python-tk \
 	python-virtualenv \
 	r-base \
 	r-base-dev \
@@ -269,7 +270,7 @@ fi
 
 if ! dpkg -l google-talkplugin; then
 	wget -O /tmp/google-talkplugin_current_amd64.deb https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb
-	dpkg -i google-talkplugin_current_amd64.deb || true
+	dpkg -i /tmp/google-talkplugin_current_amd64.deb || true
 	apt-get -fy install
 fi
 
